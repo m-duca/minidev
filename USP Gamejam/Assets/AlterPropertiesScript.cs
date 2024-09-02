@@ -15,6 +15,7 @@ public class AlterPropertiesScript : MonoBehaviour
     //Player
     private GameObject _playerProperties;
     private Slider _playerSpeedSlider;
+    private Slider _playerStrengthSlider;
 
     //Enemy
     private GameObject _enemyProperties;
@@ -50,16 +51,35 @@ public class AlterPropertiesScript : MonoBehaviour
 
         SetAllPropertiesActive(false);
 
-        //SLIDER VELOCIDADE PLAYER
+        //PLAYER
+        #region Propriedades Player
         _playerSpeedSlider = _playerProperties?.transform.Find("SpeedSlider")?.GetComponent<Slider>();
+        _playerSpeedSlider = _playerProperties?.transform.Find("StrengthSlider")?.GetComponent<Slider>();
 
         if (_playerSpeedSlider == null)
         {
             Debug.LogError("Erro: Não foi possível encontrar o Slider 'VelocidadeSlider' dentro de PlayerProperties.");
             return;
         }
+        if (_playerStrengthSlider == null)
+        {
+            Debug.LogError("Erro: Não foi possível encontrar o Slider 'ForçaSlider' dentro de PlayerProperties.");
+            return;
+        }
 
-        _playerSpeedSlider.onValueChanged.AddListener(delegate { UpdatePlayerSpeed(); });
+        _playerSpeedSlider.onValueChanged.AddListener(delegate { UpdatePlayerAttributes(); });
+        _playerStrengthSlider.onValueChanged.AddListener(delegate { UpdatePlayerAttributes(); });
+        #endregion
+
+        //INIMIGO
+        #region Propriedades Inimigo
+        #endregion
+        //OBSTÁCULO
+        #region Propriedades Obstáculos
+        #endregion
+        //CHÃO
+        #region Propriedades Chão
+        #endregion
     }
     #endregion
 
@@ -100,7 +120,7 @@ public class AlterPropertiesScript : MonoBehaviour
         OpenProperty(_groundProperties);
     }
 
-    private void UpdatePlayerSpeed()
+    private void UpdatePlayerAttributes()
     {
         float newSpeed = _playerSpeedSlider.value;
 

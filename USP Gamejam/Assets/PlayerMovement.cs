@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float playerSpeed = 40f;
+    public float playerSpeed;
+    public float playerStrength;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         var cu = Input.GetAxisRaw("Horizontal");
