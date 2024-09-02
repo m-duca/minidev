@@ -10,6 +10,10 @@ public class TabManager : MonoBehaviour
     private List<GameObject> childsGameObject = new List<GameObject>();
 
     private GameObject _buttonParent;
+
+    //Desculpa duca mas eu sou noob de programação ent vou declarar os objetos um por um (só por causa do tempo)
+    private GameObject buttons;
+    private GameObject tabs;
     #endregion
 
     #region Funções Unity
@@ -20,6 +24,8 @@ public class TabManager : MonoBehaviour
         ListChilds();
 
         _buttonParent = GameObject.FindGameObjectWithTag("Buttons");
+        buttons = GameObject.FindGameObjectWithTag("Buttons");
+        tabs = GameObject.FindGameObjectWithTag("Tabs");
     }
     #endregion
 
@@ -65,6 +71,12 @@ public class TabManager : MonoBehaviour
     public void ButtonSetState(bool state)
     {
         _buttonParent.SetActive(state);
+    }
+
+    public void CloseAllTabs()
+    {
+        buttons.SetActive(false);
+        tabs.SetActive(false);
     }
     #endregion
 }
