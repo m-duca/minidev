@@ -12,6 +12,7 @@ TagManager:
   - EnemyProperties
   - ObstacleProperties
   - GroundProperties
+  - Ground
   layers:
   - Default
   - TransparentFX
