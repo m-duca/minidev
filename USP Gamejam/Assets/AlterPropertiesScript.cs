@@ -26,6 +26,7 @@ public class AlterPropertiesScript : MonoBehaviour
 
     //Obstacle
     private GameObject _obstacleProperties;
+    private Slider _obstacleStrengthSlider;
     #endregion
 
     #region Funções Unity
@@ -103,9 +104,15 @@ public class AlterPropertiesScript : MonoBehaviour
         #endregion
         //OBSTÁCULO
         #region Propriedades Obstáculos
-        #endregion
-        //CHÃO
-        #region Propriedades Chão
+        _obstacleStrengthSlider = _obstacleProperties?.transform.Find("StrengthSlider")?.GetComponent<Slider>();
+
+        if (_obstacleStrengthSlider == null)
+        {
+            Debug.LogError("Erro: Não foi possível encontrar o Slider 'StrengthSlider' dentro de ObstacleProperties.");
+            return;
+        }
+
+        _obstacleStrengthSlider.onValueChanged.AddListener(delegate { UpdateObstacleAttributes(); });
         #endregion
     }
     #endregion
@@ -191,6 +198,29 @@ public class AlterPropertiesScript : MonoBehaviour
         else
         {
             Debug.LogError("Erro: Objeto Enemy não encontrado.");
+        }
+    }
+
+    private void UpdateObstacleAttributes()
+    {
+        float newStrength = _obstacleStrengthSlider.value;
+
+        GameObject obstacle = GameObject.FindWithTag("Obstacle");
+        if (obstacle != null)
+        {
+            ObstacleBehaviour obstacleBehaviour = obstacle.GetComponent<ObstacleBehaviour>();
+            if (obstacleBehaviour != null)
+            {
+                obstacleBehaviour.obstacleStrength = newStrength;
+            }
+            else
+            {
+                Debug.LogError("Erro: Componente ObstacleBehaviour não encontrado no objeto Obstacle.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Erro: Objeto Obstacle não encontrado.");
         }
     }
     #endregion
