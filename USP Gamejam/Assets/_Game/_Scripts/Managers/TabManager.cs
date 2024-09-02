@@ -62,5 +62,10 @@ public class TabManager : MonoBehaviour
                 child.SetActive(true);
         }
     }
+
+    private void DisableButtons()
+    {
+        
+    }
     #endregion
 }
