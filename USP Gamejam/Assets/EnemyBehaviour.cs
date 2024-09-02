@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     #region Variáveis
-    public int EnemySpeed;
-    public int EnemyStrength;
-    public int EnemyHealth;
-    public bool EnemyIsChasing = false;
+    public int enemySpeed;
+    public float enemyStrength;
+    public float enemyHealth;
+    public bool enemyIsChasing = false;
 
     // Referências:
     private static Transform _playerTransform;
@@ -23,7 +23,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (EnemyIsChasing) 
+        if (enemyIsChasing) 
             ChasePlayer();
     }
 
@@ -35,11 +35,11 @@ public class EnemyBehaviour : MonoBehaviour
     #endregion
 
     #region Funções Próprias
-    private void ChangeHealthPoints(int points = 0)
+    private void ChangeHealthPoints(float points = 0)
     {
-        EnemyHealth = Mathf.Clamp(EnemyHealth + points, 0, EnemyHealth);
+        enemyHealth = Mathf.Clamp(enemyHealth + points, 0, enemyHealth);
 
-        if (EnemyHealth == 0)
+        if (enemyHealth == 0)
             Destroy(gameObject);
     }
 
@@ -47,7 +47,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         var direction = (_playerTransform.position - gameObject.transform.position).normalized;
 
-        transform.position += direction * EnemySpeed * Time.deltaTime;
+        transform.position += direction * enemySpeed * Time.deltaTime;
     }
     #endregion
 }
