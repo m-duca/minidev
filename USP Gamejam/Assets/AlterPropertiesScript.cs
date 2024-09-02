@@ -14,9 +14,7 @@ public class AlterPropertiesScript : MonoBehaviour
 
     //Player
     private GameObject _playerProperties;
-    private TMP_InputField _pInputFieldX;
-    private TMP_InputField _pInputFieldY;
-    private TMP_InputField _pInputFieldZ;
+    private Slider _playerSpeedSlider;
 
     //Enemy
     private GameObject _enemyProperties;
@@ -52,15 +50,21 @@ public class AlterPropertiesScript : MonoBehaviour
 
         SetAllPropertiesActive(false);
 
-        // Referenciar os InputFields para editar a posição do player
-        _pInputFieldX = _playerProperties.transform.Find("InputField_X").GetComponent<TMP_InputField>();
-        _pInputFieldY = _playerProperties.transform.Find("InputField_Y").GetComponent<TMP_InputField>();
-        _pInputFieldZ = _playerProperties.transform.Find("InputField_Z").GetComponent<TMP_InputField>();
+        _playerSpeedSlider = _playerProperties?.transform.Find("SpeedSlider")?.GetComponent<Slider>();
+
+        if (_playerSpeedSlider == null)
+        {
+            Debug.LogError("Erro: Não foi possível encontrar o Slider 'VelocidadeSlider' dentro de PlayerProperties.");
+            return;
+        }
+        //_pInputFieldX = _playerProperties.transform.Find("InputField_X").GetComponent<TMP_InputField>();
+        //_pInputFieldY = _playerProperties.transform.Find("InputField_Y").GetComponent<TMP_InputField>();
+        //_pInputFieldZ = _playerProperties.transform.Find("InputField_Z").GetComponent<TMP_InputField>();
 
         // Adicionar listeners para detectar mudanças nos valores
-        _pInputFieldX.onEndEdit.AddListener(delegate { UpdatePlayerPosition(); });
-        _pInputFieldY.onEndEdit.AddListener(delegate { UpdatePlayerPosition(); });
-        _pInputFieldZ.onEndEdit.AddListener(delegate { UpdatePlayerPosition(); });
+        //_pInputFieldX.onEndEdit.AddListener(delegate { UpdatePlayerPosition(); });
+        //_pInputFieldY.onEndEdit.AddListener(delegate { UpdatePlayerPosition(); });
+        //_pInputFieldZ.onEndEdit.AddListener(delegate { UpdatePlayerPosition(); });
     }
     #endregion
 
