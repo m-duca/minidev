@@ -7,7 +7,7 @@ public class TabManager : MonoBehaviour
     #region Variáveis
     public static TabManager Instance;
 
-    public static GameObject EmailTab, ConfirmationTab, UnityTab;
+    private List<GameObject> childsGameObject = new List<GameObject>();
     #endregion
 
     #region Funções Unity
@@ -22,27 +22,45 @@ public class TabManager : MonoBehaviour
     private void Init()
     {
         // Pegando referências dos GameObjects
-        var windowCanvas = GameObject.Find("Window Canvas");
-        EmailTab = windowCanvas.transform.Find("EmailTab").gameObject;
-        ConfirmationTab = windowCanvas.transform.Find("ConfirmationTab").gameObject;
+        ListChilds();
     }
 
-    // tab => próximo gameObject que será ativado
-    // callingTab => gameObject anterior que será desativado
-    public void OpenTab(Tabs.Default tab, GameObject callingTab)
+    public void OpenTab(string newTabName)
     {
-        switch (tab)
+        DisableLastChild();
+        EnableTargetChild(newTabName);
+    }
+
+    public void CloseTab() 
+    {
+        DisableLastChild();
+    }
+
+    private void ListChilds() 
+    {
+        foreach (Transform child in transform)
         {
-            case Tabs.Default.Email:
-                EmailTab.SetActive(true);
-                break;
-
-            case Tabs.Default.Confirmation:
-                ConfirmationTab.SetActive(true);
-                break;
+            childsGameObject.Add(child.gameObject);
+            child.gameObject.SetActive(false);
         }
+    }
 
-        callingTab.SetActive(false);
+    private void DisableLastChild() 
+    {
+        foreach(GameObject child in childsGameObject) 
+        {
+            if (child.active)
+                child.SetActive(false);   
+        }
+    }
+
+    private void EnableTargetChild(string name) 
+    {
+        foreach (GameObject child in childsGameObject)
+        {
+            if (child.gameObject.name == name)
+                child.SetActive(true);
+        }
     }
     #endregion
 }
