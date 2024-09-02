@@ -16,6 +16,7 @@ public class AlterPropertiesScript : MonoBehaviour
     private GameObject _playerProperties;
     private Slider _playerSpeedSlider;
     private Slider _playerStrengthSlider;
+    private Slider _playerHealthSlider;
 
     //Enemy
     private GameObject _enemyProperties;
@@ -54,21 +55,28 @@ public class AlterPropertiesScript : MonoBehaviour
         //PLAYER
         #region Propriedades Player
         _playerSpeedSlider = _playerProperties?.transform.Find("SpeedSlider")?.GetComponent<Slider>();
-        _playerSpeedSlider = _playerProperties?.transform.Find("StrengthSlider")?.GetComponent<Slider>();
+        _playerStrengthSlider = _playerProperties?.transform.Find("StrengthSlider")?.GetComponent<Slider>();
+        _playerHealthSlider = _playerProperties?.transform.Find("HealthSlider")?.GetComponent<Slider>();
 
         if (_playerSpeedSlider == null)
         {
-            Debug.LogError("Erro: Não foi possível encontrar o Slider 'VelocidadeSlider' dentro de PlayerProperties.");
+            Debug.LogError("Erro: Não foi possível encontrar o Slider 'SpeedSlider' dentro de PlayerProperties.");
             return;
         }
         if (_playerStrengthSlider == null)
         {
-            Debug.LogError("Erro: Não foi possível encontrar o Slider 'ForçaSlider' dentro de PlayerProperties.");
+            Debug.LogError("Erro: Não foi possível encontrar o Slider 'StrengthSlider' dentro de PlayerProperties.");
+            return;
+        }
+        if (_playerStrengthSlider == null)
+        {
+            Debug.LogError("Erro: Não foi possível encontrar o Slider 'HealthSlider' dentro de PlayerProperties.");
             return;
         }
 
         _playerSpeedSlider.onValueChanged.AddListener(delegate { UpdatePlayerAttributes(); });
         _playerStrengthSlider.onValueChanged.AddListener(delegate { UpdatePlayerAttributes(); });
+        _playerHealthSlider.onValueChanged.AddListener(delegate { UpdatePlayerAttributes(); });
         #endregion
 
         //INIMIGO
@@ -94,7 +102,6 @@ public class AlterPropertiesScript : MonoBehaviour
 
     private void OpenProperty(GameObject property)
     {
-        // Desativar todas as propriedades antes de ativar a desejada
         SetAllPropertiesActive(false);
 
         _inspectorTab.SetActive(true);
@@ -123,6 +130,8 @@ public class AlterPropertiesScript : MonoBehaviour
     private void UpdatePlayerAttributes()
     {
         float newSpeed = _playerSpeedSlider.value;
+        float newStrength = _playerStrengthSlider.value;
+        float newHealth = _playerHealthSlider.value;
 
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
@@ -131,6 +140,8 @@ public class AlterPropertiesScript : MonoBehaviour
             if (playerMovement != null)
             {
                 playerMovement.playerSpeed = newSpeed;
+                playerMovement.playerStrength = newStrength;
+                //playerMovement.playerHealth = newHealth;
             }
             else
             {
