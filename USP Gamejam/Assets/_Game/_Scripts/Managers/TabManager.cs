@@ -62,7 +62,7 @@ public class TabManager : MonoBehaviour
         }
     }
 
-    private void ButtonSetState(bool state)
+    public void ButtonSetState(bool state)
     {
         _buttonParent.SetActive(state);
     }
