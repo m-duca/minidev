@@ -50,6 +50,7 @@ public class AlterPropertiesScript : MonoBehaviour
 
         SetAllPropertiesActive(false);
 
+        //SLIDER VELOCIDADE PLAYER
         _playerSpeedSlider = _playerProperties?.transform.Find("SpeedSlider")?.GetComponent<Slider>();
 
         if (_playerSpeedSlider == null)
@@ -57,14 +58,8 @@ public class AlterPropertiesScript : MonoBehaviour
             Debug.LogError("Erro: Não foi possível encontrar o Slider 'VelocidadeSlider' dentro de PlayerProperties.");
             return;
         }
-        //_pInputFieldX = _playerProperties.transform.Find("InputField_X").GetComponent<TMP_InputField>();
-        //_pInputFieldY = _playerProperties.transform.Find("InputField_Y").GetComponent<TMP_InputField>();
-        //_pInputFieldZ = _playerProperties.transform.Find("InputField_Z").GetComponent<TMP_InputField>();
 
-        // Adicionar listeners para detectar mudanças nos valores
-        //_pInputFieldX.onEndEdit.AddListener(delegate { UpdatePlayerPosition(); });
-        //_pInputFieldY.onEndEdit.AddListener(delegate { UpdatePlayerPosition(); });
-        //_pInputFieldZ.onEndEdit.AddListener(delegate { UpdatePlayerPosition(); });
+        _playerSpeedSlider.onValueChanged.AddListener(delegate { UpdatePlayerSpeed(); });
     }
     #endregion
 
@@ -105,30 +100,26 @@ public class AlterPropertiesScript : MonoBehaviour
         OpenProperty(_groundProperties);
     }
 
-    private void UpdatePlayerPosition()
+    private void UpdatePlayerSpeed()
     {
-        float SafeParseInput(string input)
-        {
-            input = input.Trim(); // Remove espaços em branco
-            if (float.TryParse(input, out float result))
-            {
-                return result; // Retorna o valor convertido
-            }
+        float newSpeed = _playerSpeedSlider.value;
 
-            Debug.LogWarning($"Entrada inválida: '{input}'. Definindo como 0.");
-            return 0f; // Retorna 0 para entradas inválidas ou vazias
-        }
-
-        // Usar SafeParseInput para converter os valores dos campos
-        float x = SafeParseInput(_pInputFieldX.text);
-        float y = SafeParseInput(_pInputFieldY.text);
-        float z = SafeParseInput(_pInputFieldZ.text);
-
-        // Atualizar a posição do jogador
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
-            player.transform.position = new Vector3(x, y, z);
+            PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.playerSpeed = newSpeed;
+            }
+            else
+            {
+                Debug.LogError("Erro: Componente PlayerMovement não encontrado no objeto Player.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Erro: Objeto Player não encontrado.");
         }
     }
     #endregion
