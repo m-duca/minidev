@@ -8,23 +8,22 @@ public class TabManager : MonoBehaviour
     public static TabManager Instance;
 
     private List<GameObject> childsGameObject = new List<GameObject>();
+
+    private GameObject _buttonParent;
     #endregion
 
     #region Funções Unity
     private void Awake()
     {
         Instance = this;
-        Init();
+
+        ListChilds();
+
+        _buttonParent = GameObject.FindGameObjectWithTag("Buttons");
     }
     #endregion
 
     #region Funções Próprias
-    private void Init()
-    {
-        // Pegando referências dos GameObjects
-        ListChilds();
-    }
-
     public void OpenTab(string newTabName)
     {
         DisableLastChild();
@@ -63,9 +62,9 @@ public class TabManager : MonoBehaviour
         }
     }
 
-    private void DisableButtons()
+    private void ButtonSetState(bool state)
     {
-        
+        _buttonParent.SetActive(state);
     }
     #endregion
 }
