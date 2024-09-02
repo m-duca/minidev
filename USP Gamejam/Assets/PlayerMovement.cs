@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Variáveis Player")]
-    public int playerStrength;
+    public float playerStrength;
     public int playerHealth;
     public float playerSpeed;
     public float jumpForce;
