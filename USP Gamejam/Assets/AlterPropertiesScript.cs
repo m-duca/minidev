@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class AlterPropertiesScript : MonoBehaviour
 {
@@ -13,9 +14,9 @@ public class AlterPropertiesScript : MonoBehaviour
 
     //Player
     private GameObject _playerProperties;
-    private InputField _pInputFieldX;
-    private InputField _pInputFieldY;
-    private InputField _pInputFieldZ;
+    private TMP_InputField _pInputFieldX;
+    private TMP_InputField _pInputFieldY;
+    private TMP_InputField _pInputFieldZ;
 
     //Enemy
     private GameObject _enemyProperties;
@@ -52,9 +53,9 @@ public class AlterPropertiesScript : MonoBehaviour
         SetAllPropertiesActive(false);
 
         // Referenciar os InputFields para editar a posição do player
-        _pInputFieldX = _playerProperties.transform.Find("InputField_X").GetComponent<InputField>();
-        _pInputFieldY = _playerProperties.transform.Find("InputField_Y").GetComponent<InputField>();
-        _pInputFieldZ = _playerProperties.transform.Find("InputField_Z").GetComponent<InputField>();
+        _pInputFieldX = _playerProperties.transform.Find("InputField_X").GetComponent<TMP_InputField>();
+        _pInputFieldY = _playerProperties.transform.Find("InputField_Y").GetComponent<TMP_InputField>();
+        _pInputFieldZ = _playerProperties.transform.Find("InputField_Z").GetComponent<TMP_InputField>();
 
         // Adicionar listeners para detectar mudanças nos valores
         _pInputFieldX.onEndEdit.AddListener(delegate { UpdatePlayerPosition(); });
@@ -102,9 +103,22 @@ public class AlterPropertiesScript : MonoBehaviour
 
     private void UpdatePlayerPosition()
     {
-        float x = float.Parse(_pInputFieldX.text);
-        float y = float.Parse(_pInputFieldY.text);
-        float z = float.Parse(_pInputFieldZ.text);
+        float SafeParseInput(string input)
+        {
+            input = input.Trim(); // Remove espaços em branco
+            if (float.TryParse(input, out float result))
+            {
+                return result; // Retorna o valor convertido
+            }
+
+            Debug.LogWarning($"Entrada inválida: '{input}'. Definindo como 0.");
+            return 0f; // Retorna 0 para entradas inválidas ou vazias
+        }
+
+        // Usar SafeParseInput para converter os valores dos campos
+        float x = SafeParseInput(_pInputFieldX.text);
+        float y = SafeParseInput(_pInputFieldY.text);
+        float z = SafeParseInput(_pInputFieldZ.text);
 
         // Atualizar a posição do jogador
         GameObject player = GameObject.FindWithTag("Player");
