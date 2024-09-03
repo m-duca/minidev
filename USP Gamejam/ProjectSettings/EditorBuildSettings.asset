@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Game/Scenes/CaiqueTestes/Game.unity
+    path: Assets/_Game/Scenes/Game.unity
     guid: 41d8f221022f64a4eae6120309a745ff
   m_configObjects: {}
