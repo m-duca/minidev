@@ -9,6 +9,7 @@ public class DragUI : MonoBehaviour, IDragHandler
 
     // Componentes: 
     private RectTransform _rectTransform;
+    private Rigidbody2D _rb;
 
     // Limites da área onde o RectTransform pode se mover (em unidades de tela).
     public Vector2 minPosition;
@@ -23,11 +24,17 @@ public class DragUI : MonoBehaviour, IDragHandler
     private void Start()
     {
         _rectTransform = GetComponent<RectTransform>();
+
+        if (gameObject.GetComponent<Rigidbody2D>() != null)
+            _rb = GetComponent<Rigidbody2D>();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         TabManager.Instance.IsDragging = true;
+
+        if (_rb != null)
+            _rb.isKinematic = false;
 
         // Calcula a nova posição
         Vector2 newPosition = _rectTransform.anchoredPosition + eventData.delta / _windowCanvas.scaleFactor;

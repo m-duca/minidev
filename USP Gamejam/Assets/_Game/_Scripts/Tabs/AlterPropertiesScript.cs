@@ -270,19 +270,16 @@ public class AlterPropertiesScript : MonoBehaviour
         {
             case "Obstacle":
                 var newObstacle = Instantiate(obstacle, obstacle.transform.position + spawnOffset, Quaternion.identity);
-                newObstacle.transform.localScale = obstacle.transform.localScale;
                 newObstacle.transform.parent = gameObject.transform.parent;
                 break;
 
             case "Enemy":
                 var newEnemy = Instantiate(enemy, enemy.transform.position + spawnOffset, Quaternion.identity);
-                newEnemy.transform.localScale = enemy.transform.localScale;
                 newEnemy.transform.parent = gameObject.transform.parent;
                 break;
 
             case "Ground":
                 var newGround = Instantiate(ground, ground.transform.position + spawnOffset, Quaternion.identity);
-                newGround.transform.localScale = ground.transform.localScale;
                 newGround.transform.parent = gameObject.transform.parent;
                 break;
         }

@@ -4,33 +4,26 @@ using UnityEngine;
 
 public class ObstacleBehaviour : MonoBehaviour
 {
+    [SerializeField] private Vector3 initialPos;
+
     public float obstacleStrength;
 
-    private Vector3 _initialPos;
-
-    private bool _isFirst = false;
     private float _initialStrength;
 
 
-    private void Awake()
-    {
-        _isFirst = true;
-    }
-
     private void Start()
     {
-        if (_isFirst) 
+        if (!gameObject.name.Contains("Clone")) 
         {
-            _initialPos = gameObject.transform.position;
             _initialStrength = obstacleStrength;
         }        
     }
 
     public void Reset()
     {
-        if (_isFirst) 
+        if (!gameObject.name.Contains("Clone")) 
         {
-            gameObject.transform.position = _initialPos;
+            gameObject.GetComponent<RectTransform>().anchoredPosition = initialPos;
             obstacleStrength = _initialStrength;
         }
         else 
