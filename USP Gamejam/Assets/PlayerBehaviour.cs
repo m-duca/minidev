@@ -46,8 +46,6 @@ public class PlayerBehaviour : MonoBehaviour
 
             //Desativa o pulo depois que sai do chão
             isGrounded = false;
-            
-
         }
        
     }
