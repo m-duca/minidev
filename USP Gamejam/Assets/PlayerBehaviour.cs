@@ -85,6 +85,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void Reset()
     {
+        enabled = false;
+        _rb.gravityScale = 0;
+
         gameObject.transform.position = _initialPos;
         playerStrength = _initialStrength;
         playerHealth = _initialHealth;

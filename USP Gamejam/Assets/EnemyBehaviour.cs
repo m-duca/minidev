@@ -12,6 +12,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     private bool _isFirst = false;
 
+    private Rigidbody2D _rb;
+
     // Referências:
     private static Transform _playerTransform;
 
@@ -26,6 +28,8 @@ public class EnemyBehaviour : MonoBehaviour
     private void Awake()
     {
         _isFirst = true;
+
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -78,6 +82,9 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (_isFirst) 
         {
+            enabled = false;
+            _rb.gravityScale = 0;
+
             gameObject.transform.position = _initialPos;
             enemySpeed = _initialSpeed;
             enemyStrength = _initialStrength;
