@@ -1151,7 +1151,6 @@ GameObject:
   - component: {fileID: 811503033}
   - component: {fileID: 811503032}
   - component: {fileID: 811503031}
-  - component: {fileID: 811503030}
   - component: {fileID: 811503034}
   m_Layer: 5
   m_Name: EnemyObject
@@ -1179,22 +1178,6 @@ RectTransform:
   m_AnchoredPosition: {x: -250, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &811503030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811503028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71ab29a525b682449a849f70fdb89d1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpeed: 40
-  playerStrength: 0
-  jumpForce: 0
-  isGrounded: 0
 --- !u!114 &811503031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1430,9 +1413,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ab29a525b682449a849f70fdb89d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 40
   playerStrength: 0
-  jumpForce: 0
+  playerHealth: 100
+  playerSpeed: 40
+  playerJumpForce: 0
   isGrounded: 0
 --- !u!114 &976006030
 MonoBehaviour:
@@ -3074,9 +3058,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ab29a525b682449a849f70fdb89d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 40
   playerStrength: 0
-  jumpForce: 0
+  playerHealth: 100
+  playerSpeed: 40
+  playerJumpForce: 0
   isGrounded: 0
 --- !u!114 &1676680653
 MonoBehaviour:
@@ -3315,9 +3300,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ab29a525b682449a849f70fdb89d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 10
   playerStrength: 0
-  jumpForce: 80
+  playerHealth: 100
+  playerSpeed: 10
+  playerJumpForce: 0
   isGrounded: 0
 --- !u!114 &1756189488
 MonoBehaviour:
@@ -4182,7 +4168,7 @@ GameObject:
   - component: {fileID: 2089944708}
   m_Layer: 5
   m_Name: Ground
-  m_TagString: Ground
+  m_TagString: Undefined
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
