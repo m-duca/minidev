@@ -9,7 +9,9 @@ public class EmailTab : MonoBehaviour
 
     public void BtnDownload() 
     {
-        // TODO: Download Audio
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX("startup");
+
         engineBtn.SetActive(true);
         gameObject.SetActive(false);
     }

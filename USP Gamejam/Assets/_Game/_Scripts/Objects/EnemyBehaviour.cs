@@ -75,7 +75,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         var direction = (_playerTransform.position - gameObject.transform.position).normalized;
 
-        transform.position += direction * enemySpeed * Time.deltaTime;
+        transform.position += Vector3.right * direction.x * enemySpeed * Time.deltaTime;
     }
 
     public void Reset()

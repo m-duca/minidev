@@ -1,9 +1,13 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DragUI : MonoBehaviour, IDragHandler
 {
+    // Referências:
     private static Canvas _windowCanvas;
+
+    // Componentes: 
     private RectTransform _rectTransform;
 
     // Limites da área onde o RectTransform pode se mover (em unidades de tela).
@@ -23,6 +27,8 @@ public class DragUI : MonoBehaviour, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
+        TabManager.Instance.IsDragging = true;
+
         // Calcula a nova posição
         Vector2 newPosition = _rectTransform.anchoredPosition + eventData.delta / _windowCanvas.scaleFactor;
 
@@ -32,5 +38,7 @@ public class DragUI : MonoBehaviour, IDragHandler
 
         // Aplica a posição ajustada
         _rectTransform.anchoredPosition = newPosition;
+
+        TabManager.Instance.IsDragging = false;
     }
 }
