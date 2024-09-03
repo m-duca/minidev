@@ -17,6 +17,7 @@ public class AlterPropertiesScript : MonoBehaviour
     private Slider _playerSpeedSlider;
     private Slider _playerStrengthSlider;
     private Slider _playerHealthSlider;
+    private Slider _playerJumpForceSlider;
 
     //Enemy
     private GameObject _enemyProperties;
@@ -54,6 +55,7 @@ public class AlterPropertiesScript : MonoBehaviour
         _playerSpeedSlider = _playerProperties?.transform.Find("SpeedSlider")?.GetComponent<Slider>();
         _playerStrengthSlider = _playerProperties?.transform.Find("StrengthSlider")?.GetComponent<Slider>();
         _playerHealthSlider = _playerProperties?.transform.Find("HealthSlider")?.GetComponent<Slider>();
+        _playerJumpForceSlider = _playerProperties?.transform.Find("JumpForceSlider")?.GetComponent<Slider>();
 
         if (_playerSpeedSlider == null)
         {
@@ -70,10 +72,16 @@ public class AlterPropertiesScript : MonoBehaviour
             Debug.LogError("Erro: Não foi possível encontrar o Slider 'HealthSlider' dentro de PlayerProperties.");
             return;
         }
+        if (_playerJumpForceSlider == null)
+        {
+            Debug.LogError("Erro: Não foi possível encontrar o Slider 'JumpForceSlider' dentro de PlayerProperties.");
+            return;
+        }
 
         _playerSpeedSlider.onValueChanged.AddListener(delegate { UpdatePlayerAttributes(); });
         _playerStrengthSlider.onValueChanged.AddListener(delegate { UpdatePlayerAttributes(); });
         _playerHealthSlider.onValueChanged.AddListener(delegate { UpdatePlayerAttributes(); });
+        _playerJumpForceSlider.onValueChanged.AddListener(delegate { UpdatePlayerAttributes(); });
         #endregion
 
         //INIMIGO
@@ -102,6 +110,7 @@ public class AlterPropertiesScript : MonoBehaviour
         _enemyHealthSlider.onValueChanged.AddListener(delegate { UpdateEnemyAttributes(); });
         //_enemyIsChasingButton.onValueChanged.AddListener(delegate { UpdatePlayerAttributes(); });
         #endregion
+
         //OBSTÁCULO
         #region Propriedades Obstáculos
         _obstacleStrengthSlider = _obstacleProperties?.transform.Find("StrengthSlider")?.GetComponent<Slider>();
@@ -153,6 +162,7 @@ public class AlterPropertiesScript : MonoBehaviour
         float newSpeed = _playerSpeedSlider.value;
         float newStrength = _playerStrengthSlider.value;
         float newHealth = _playerHealthSlider.value;
+        float newJumpForce = _playerJumpForceSlider.value;
 
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
@@ -162,7 +172,8 @@ public class AlterPropertiesScript : MonoBehaviour
             {
                 playerMovement.playerSpeed = newSpeed;
                 playerMovement.playerStrength = newStrength;
-                //playerMovement.playerHealth = newHealth;
+                playerMovement.playerHealth = newHealth;
+                playerMovement.playerJumpForce = newJumpForce;
             }
             else
             {

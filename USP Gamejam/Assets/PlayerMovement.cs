@@ -6,9 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Variáveis Player")]
     public float playerStrength;
-    public int playerHealth;
+    public float playerHealth;
     public float playerSpeed;
-    public float jumpForce;
+    public float playerJumpForce;
     public bool isGrounded;
 
     //Componente
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //_rb.velocity = new Vector2(_rb.velocity.x, 0f);
             //Faz o pulo
-            _rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+            _rb.AddForce(Vector3.up * playerJumpForce, ForceMode2D.Impulse);
             //_rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
 
             //Desativa o pulo depois que sai do chão
