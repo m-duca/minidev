@@ -5,19 +5,17 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     #region Variáveis
+    [SerializeField] private Vector3 initialPos;
+    [SerializeField] private Rigidbody2D rb;
+
     public float enemySpeed;
     public float enemyStrength;
     public float enemyHealth;
     public bool enemyIsChasing = false;
 
-    private bool _isFirst = false;
-
-    private Rigidbody2D _rb;
-
     // Referências:
     private static Transform _playerTransform;
 
-    private Vector3 _initialPos;
     private float _initialSpeed;
     private float _initialStrength;
     private float _initialHealth;
@@ -25,18 +23,12 @@ public class EnemyBehaviour : MonoBehaviour
     #endregion
 
     #region Funções Unity
-    private void Awake()
-    {
-        _isFirst = true;
-
-        _rb = GetComponent<Rigidbody2D>();
-    }
-
     private void Start()
     {
-        if (_isFirst) 
+        rb = GetComponent<Rigidbody2D>();
+
+        if (!gameObject.name.Contains("Clone")) 
         {
-            _initialPos = gameObject.transform.position;
             _initialSpeed = enemySpeed;
             _initialStrength = enemyStrength;
             _initialHealth = enemyHealth;
@@ -75,17 +67,18 @@ public class EnemyBehaviour : MonoBehaviour
     {
         var direction = (_playerTransform.position - gameObject.transform.position).normalized;
 
-        transform.position += direction * enemySpeed * Time.deltaTime;
+        transform.position += Vector3.right * direction.x * enemySpeed * Time.deltaTime;
     }
 
     public void Reset()
     {
-        if (_isFirst) 
+        if (!gameObject.name.Contains("Clone")) 
         {
             enabled = false;
-            _rb.gravityScale = 0;
+            rb.isKinematic = true;
+            rb.gravityScale = 0f;
 
-            gameObject.transform.position = _initialPos;
+            gameObject.GetComponent<RectTransform>().anchoredPosition = initialPos;
             enemySpeed = _initialSpeed;
             enemyStrength = _initialStrength;
             enemyHealth = _initialHealth;

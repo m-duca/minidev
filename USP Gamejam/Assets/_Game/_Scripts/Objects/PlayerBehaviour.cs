@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    [SerializeField] private Vector3 initialPos;
+    [SerializeField] private Rigidbody2D rb;
+
     [Header("Variáveis Player")]
     public float playerStrength;
     public float playerHealth;
@@ -12,7 +15,6 @@ public class PlayerBehaviour : MonoBehaviour
     public bool isGrounded;
 
     //Componente
-    private Rigidbody2D _rb;
     private bool _isJumping;
 
     /*
@@ -23,8 +25,6 @@ public class PlayerBehaviour : MonoBehaviour
     Dano
     Escala (a se pensar)*/
 
-    private Vector3 _initialPos;
-
     private float _initialStrength;
     private float _initialHealth;
     private float _initialSpeed;
@@ -32,13 +32,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _initialPos = gameObject.transform.position;
-    }
-
-    void Update()
-    {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
@@ -51,7 +45,7 @@ public class PlayerBehaviour : MonoBehaviour
             //_rb.velocity = new Vector2(_rb.velocity.x, 0f);
             //Faz o pulo
             _isJumping = true;
-            _rb.AddForce(Vector3.up * playerJumpForce, ForceMode2D.Impulse);
+            rb.AddForce(Vector3.up * playerJumpForce, ForceMode2D.Impulse);
             //_rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
 
             //Desativa o pulo depois que sai do chão
@@ -97,9 +91,9 @@ public class PlayerBehaviour : MonoBehaviour
     public void Reset()
     {
         enabled = false;
-        _rb.gravityScale = 0;
+        rb.isKinematic = true;
 
-        gameObject.transform.position = _initialPos;
+        gameObject.GetComponent<RectTransform>().anchoredPosition = initialPos;
         playerStrength = _initialStrength;
         playerHealth = _initialHealth;
         playerSpeed = _initialSpeed;

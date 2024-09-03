@@ -1,10 +1,15 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DragUI : MonoBehaviour, IDragHandler
 {
+    // Referências:
     private static Canvas _windowCanvas;
+
+    // Componentes: 
     private RectTransform _rectTransform;
+    private Rigidbody2D _rb;
 
     // Limites da área onde o RectTransform pode se mover (em unidades de tela).
     public Vector2 minPosition;
@@ -19,10 +24,18 @@ public class DragUI : MonoBehaviour, IDragHandler
     private void Start()
     {
         _rectTransform = GetComponent<RectTransform>();
+
+        if (gameObject.GetComponent<Rigidbody2D>() != null)
+            _rb = GetComponent<Rigidbody2D>();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        TabManager.Instance.IsDragging = true;
+
+        if (_rb != null)
+            _rb.isKinematic = false;
+
         // Calcula a nova posição
         Vector2 newPosition = _rectTransform.anchoredPosition + eventData.delta / _windowCanvas.scaleFactor;
 
@@ -32,5 +45,7 @@ public class DragUI : MonoBehaviour, IDragHandler
 
         // Aplica a posição ajustada
         _rectTransform.anchoredPosition = newPosition;
+
+        TabManager.Instance.IsDragging = false;
     }
 }

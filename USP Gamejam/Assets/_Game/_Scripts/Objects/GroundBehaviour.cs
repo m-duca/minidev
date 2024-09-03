@@ -4,28 +4,13 @@ using UnityEngine;
 
 public class GroundBehaviour : MonoBehaviour
 {
-    private Vector3 _initialPos;
-
-    private bool _isFirst = false;
-
-    private void Awake()
-    {
-        _isFirst = true;
-    }
-
-    private void Start()
-    {
-        if (_isFirst)
-        {
-            _initialPos = gameObject.transform.position;
-        }
-    }
+    [SerializeField] private Vector3 initialPos;
 
     public void Reset()
     {
-        if (_isFirst)
+        if (!gameObject.name.Contains("Clone"))
         {
-            gameObject.transform.position = _initialPos;
+            gameObject.GetComponent<RectTransform>().anchoredPosition = initialPos;
         }
         else
         {

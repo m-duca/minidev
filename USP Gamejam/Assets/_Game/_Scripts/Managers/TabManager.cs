@@ -14,6 +14,8 @@ public class TabManager : MonoBehaviour
     //Desculpa duca mas eu sou noob de programação ent vou declarar os objetos um por um (só por causa do tempo)
     private GameObject buttons;
     private GameObject tabs;
+
+    public bool IsDragging = false;
     #endregion
 
     #region Funções Unity
@@ -30,7 +32,14 @@ public class TabManager : MonoBehaviour
 
     private void Start()
     {
-        // TODO: SFX SO
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX("notify 2");
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) 
+            SFXMouse();
     }
 
     #endregion
@@ -83,6 +92,23 @@ public class TabManager : MonoBehaviour
     {
         buttons.SetActive(false);
         if (tabs != null) tabs.SetActive(false);
+    }
+
+    public void SFXMouse() 
+    {
+        if (AudioManager.Instance != null) 
+        {
+            if (IsDragging) 
+                AudioManager.Instance.PlaySFX("click drag " + Random.Range(1, 3));
+            else
+                AudioManager.Instance.PlaySFX("mouse " + Random.Range(1, 3));
+        }
+    }
+
+    public void SFXKeyboard() 
+    {
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX("teclado " + Random.Range(1, 3));
     }
     #endregion
 }
