@@ -29,6 +29,9 @@ public class AlterPropertiesScript : MonoBehaviour
     //Obstacle
     private GameObject _obstacleProperties;
     private Slider _obstacleStrengthSlider;
+
+    //Ground
+    private GameObject _groundProperties;
     #endregion
 
     #region Funções Unity
@@ -48,6 +51,10 @@ public class AlterPropertiesScript : MonoBehaviour
         _obstacleProperties = GameObject.FindGameObjectWithTag("ObstacleProperties");
         _obstacleProperties.SetActive(false);
         _properties.Add(_obstacleProperties);
+
+        _groundProperties = GameObject.FindGameObjectWithTag("GroundProperties");
+        _groundProperties.SetActive(false);
+        _properties.Add(_groundProperties);
 
         SetAllPropertiesActive(false);
 
@@ -165,6 +172,11 @@ public class AlterPropertiesScript : MonoBehaviour
         OpenProperty(_obstacleProperties);
     }
 
+    public void OpenGroundProperties()
+    {
+        OpenProperty(_groundProperties);
+    }
+
     private void UpdatePlayerAttributes()
     {
         float newSpeed = _playerSpeedSlider.value;
@@ -244,6 +256,11 @@ public class AlterPropertiesScript : MonoBehaviour
         {
             Debug.LogError("Erro: Objeto Obstacle não encontrado.");
         }
+    }
+
+    public void DuplicateObject(GameObject objectToDuplicate)
+    {
+        Instantiate(objectToDuplicate);
     }
     #endregion
 }
