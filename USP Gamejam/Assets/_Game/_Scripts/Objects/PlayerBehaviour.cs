@@ -70,11 +70,12 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Enemy")) 
         {
+            // Pulando no Inimigo
             if (_isJumping && gameObject.transform.position.y > collision.gameObject.transform.position.y) 
             {
                 collision.gameObject.GetComponent<EnemyBehaviour>().ChangeHealthPoints(-playerStrength);
             }
-            else 
+            else // Recebendo Dano do Inimigo
             {
                 ChangeHealthPoints(-collision.gameObject.GetComponent<EnemyBehaviour>().enemyStrength);
             }

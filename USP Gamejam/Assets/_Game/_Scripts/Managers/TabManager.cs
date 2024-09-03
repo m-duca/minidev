@@ -27,6 +27,12 @@ public class TabManager : MonoBehaviour
         buttons = GameObject.FindGameObjectWithTag("Buttons");
         tabs = GameObject.FindGameObjectWithTag("Tabs");
     }
+
+    private void Start()
+    {
+        // TODO: SFX SO
+    }
+
     #endregion
 
     #region Funções Próprias
@@ -76,7 +82,7 @@ public class TabManager : MonoBehaviour
     public void CloseAllTabs()
     {
         buttons.SetActive(false);
-        tabs.SetActive(false);
+        if (tabs != null) tabs.SetActive(false);
     }
     #endregion
 }
