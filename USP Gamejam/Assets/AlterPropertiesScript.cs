@@ -21,6 +21,7 @@ public class AlterPropertiesScript : MonoBehaviour
 
     //Enemy
     private GameObject _enemyProperties;
+    private GameObject _enemySpeedSlider;
     private Slider _enemyStrengthSlider;
     private Slider _enemyHealthSlider;
     private Toggle _enemyIsChasingToggle;
