@@ -33,6 +33,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _initialPos = gameObject.transform.position;
     }
 
     void Update()
