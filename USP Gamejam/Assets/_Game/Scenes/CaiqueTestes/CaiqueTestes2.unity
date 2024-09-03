@@ -2563,6 +2563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a112e336410624abcd7537ec550896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPos: {x: 0, y: 0, z: 0}
   obstacleStrength: 0
 --- !u!114 &236108348
 MonoBehaviour:
@@ -2998,6 +2999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f9ec80d85e3ba4a95505f79f37982c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPos: {x: 0, y: 0, z: 0}
 --- !u!114 &250740175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4762,6 +4764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d724f493dd12eb944a08adca2821145d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDragging: 0
 --- !u!1 &484553570
 GameObject:
   m_ObjectHideFlags: 0
@@ -7728,6 +7731,7 @@ GameObject:
   - component: {fileID: 811503035}
   - component: {fileID: 811503037}
   - component: {fileID: 811503036}
+  - component: {fileID: 811503038}
   m_Layer: 5
   m_Name: EnemyObject
   m_TagString: Enemy
@@ -7874,6 +7878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acf4b1dcb1361a409bdced9bc34de4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPos: {x: -144, y: -31.13, z: 0}
+  rb: {fileID: 811503037}
   enemySpeed: 0
   enemyStrength: 0
   enemyHealth: 0
@@ -7950,6 +7956,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!95 &811503038
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811503028}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0c2b1866f29eebd42a56077362da4d4a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &818274503
 GameObject:
   m_ObjectHideFlags: 0
@@ -9101,6 +9128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acf4b1dcb1361a409bdced9bc34de4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPos: {x: 0, y: 0, z: 0}
+  rb: {fileID: 0}
   enemySpeed: 0
   enemyStrength: 0
   enemyHealth: 0
@@ -9908,6 +9937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f9ec80d85e3ba4a95505f79f37982c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPos: {x: -61.235, y: 95, z: 0}
 --- !u!1 &985691879
 GameObject:
   m_ObjectHideFlags: 0
@@ -15320,6 +15350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ab29a525b682449a849f70fdb89d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPos: {x: 0, y: 0, z: 0}
+  rb: {fileID: 0}
   playerStrength: 0
   playerHealth: 0
   playerSpeed: 0
@@ -16500,6 +16532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a112e336410624abcd7537ec550896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPos: {x: 85.01097, y: -31.13, z: 0}
   obstacleStrength: 0
 --- !u!61 &1676680658
 BoxCollider2D:
@@ -17058,6 +17091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f9ec80d85e3ba4a95505f79f37982c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPos: {x: 311, y: -31.13, z: 0}
 --- !u!114 &1742463009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17373,6 +17407,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ab29a525b682449a849f70fdb89d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPos: {x: -350, y: -33.51, z: 0}
+  rb: {fileID: 1756189494}
   playerStrength: 0
   playerHealth: 0
   playerSpeed: 0
@@ -18049,6 +18085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f9ec80d85e3ba4a95505f79f37982c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPos: {x: 0, y: 0, z: 0}
 --- !u!114 &1843782676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20335,6 +20372,7 @@ GameObject:
   - component: {fileID: 2063558163}
   - component: {fileID: 2063558162}
   - component: {fileID: 2063558161}
+  - component: {fileID: 2063558164}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -20416,6 +20454,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2063558164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063558160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a6a1f558a65684ebb969b65c0dad0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPosition: {x: 98.5, y: 102.2}
+  maxPosition: {x: 622, y: 390.5}
 --- !u!1 &2063896061
 GameObject:
   m_ObjectHideFlags: 0

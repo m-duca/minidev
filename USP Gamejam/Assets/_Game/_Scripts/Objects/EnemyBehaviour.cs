@@ -67,6 +67,11 @@ public class EnemyBehaviour : MonoBehaviour
     {
         var direction = (_playerTransform.position - gameObject.transform.position).normalized;
 
+        if (direction.x < 0f)
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        else
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        
         transform.position += Vector3.right * direction.x * enemySpeed * Time.deltaTime;
     }
 
