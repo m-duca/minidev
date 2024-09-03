@@ -269,15 +269,18 @@ public class AlterPropertiesScript : MonoBehaviour
         switch (objectName) 
         {
             case "Obstacle":
-                Instantiate(obstacle, obstacle.transform.position + spawnOffset, Quaternion.identity);
+                var newObstacle = Instantiate(obstacle, obstacle.transform.position + spawnOffset, Quaternion.identity);
+                newObstacle.transform.parent = gameObject.transform.parent;
                 break;
 
             case "Enemy":
-                Instantiate(enemy, enemy.transform.position + spawnOffset, Quaternion.identity);
+                var newEnemy = Instantiate(enemy, enemy.transform.position + spawnOffset, Quaternion.identity);
+                newEnemy.transform.parent = gameObject.transform.parent;
                 break;
 
             case "Ground":
-                Instantiate(ground, ground.transform.position + spawnOffset, Quaternion.identity);
+                var newGround = Instantiate(ground, ground.transform.position + spawnOffset, Quaternion.identity);
+                newGround.transform.parent = gameObject.transform.parent;
                 break;
         }
     }
