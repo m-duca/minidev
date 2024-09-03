@@ -10,13 +10,35 @@ public class EnemyBehaviour : MonoBehaviour
     public float enemyHealth;
     public bool enemyIsChasing = false;
 
+    private bool _isFirst = false;
+
     // Referências:
     private static Transform _playerTransform;
+
+    private Vector3 _initialPos;
+    private float _initialSpeed;
+    private float _initialStrength;
+    private float _initialHealth;
+    private bool _initialIsChasing;
     #endregion
 
     #region Funções Unity
+    private void Awake()
+    {
+        _isFirst = true;
+    }
+
     private void Start()
     {
+        if (_isFirst) 
+        {
+            _initialPos = gameObject.transform.position;
+            _initialSpeed = enemySpeed;
+            _initialStrength = enemyStrength;
+            _initialHealth = enemyHealth;
+            _initialIsChasing = enemyIsChasing;
+        }
+
         if (_playerTransform == null)
             _playerTransform = FindObjectOfType<PlayerBehaviour>().transform;
     }
@@ -50,6 +72,22 @@ public class EnemyBehaviour : MonoBehaviour
         var direction = (_playerTransform.position - gameObject.transform.position).normalized;
 
         transform.position += direction * enemySpeed * Time.deltaTime;
+    }
+
+    public void Reset()
+    {
+        if (_isFirst) 
+        {
+            gameObject.transform.position = _initialPos;
+            enemySpeed = _initialSpeed;
+            enemyStrength = _initialStrength;
+            enemyHealth = _initialHealth;
+            enemyIsChasing = _initialIsChasing;
+        }
+        else 
+        {
+            Destroy(gameObject);
+        }
     }
     #endregion
 }

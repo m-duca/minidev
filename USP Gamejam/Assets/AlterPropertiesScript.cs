@@ -284,5 +284,24 @@ public class AlterPropertiesScript : MonoBehaviour
                 break;
         }
     }
+
+    public void ResetAll() 
+    {
+        GameObject.FindObjectOfType<PlayerBehaviour>().Reset();
+
+        var enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach(GameObject e in enemyList) 
+        {
+            e.GetComponent<EnemyBehaviour>().Reset();
+        }
+
+        var obstacleList = GameObject.FindGameObjectsWithTag("Obstacle");
+
+        foreach(GameObject o in obstacleList) 
+        {
+            o.GetComponent<ObstacleBehaviour>().Reset();
+        }
+    }
     #endregion
 }

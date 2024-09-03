@@ -22,6 +22,14 @@ public class PlayerBehaviour : MonoBehaviour
     Dano
     Escala (a se pensar)*/
 
+    private Vector3 _initialPos;
+
+    private float _initialStrength;
+    private float _initialHealth;
+    private float _initialSpeed;
+    private float _initialJumpForce;
+
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -74,6 +82,17 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (playerHealth == 0)
             Destroy(gameObject);
+    }
+
+    public void Reset()
+    {
+        gameObject.transform.position = _initialPos;
+        playerStrength = _initialStrength;
+        playerHealth = _initialHealth;
+        playerSpeed = _initialSpeed;
+        playerJumpForce = _initialJumpForce;
+
+        isGrounded = false;
     }
 }
 
