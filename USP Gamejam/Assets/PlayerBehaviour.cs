@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerBehaviour : MonoBehaviour
 {
     [Header("Variáveis Player")]
     public float playerStrength;
@@ -58,14 +58,22 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
         }
+        else if (collision.gameObject.CompareTag("Enemy")) 
+        {
+            ChangeHealthPoints(-collision.gameObject.GetComponent<EnemyBehaviour>().enemyStrength);
+        }
+        else if (collision.gameObject.CompareTag("Obstacle")) 
+        {
+            ChangeHealthPoints(-collision.gameObject.GetComponent<ObstacleBehaviour>().obstacleStrength);
+        }
     }
 
-    /*private void OnCollisionExit2D(Collision2D collision)
+    private void ChangeHealthPoints(float points = 0)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-    }*/
+        playerHealth = Mathf.Clamp(playerHealth + points, 0, playerHealth);
+
+        if (playerHealth == 0)
+            Destroy(gameObject);
+    }
 }
 

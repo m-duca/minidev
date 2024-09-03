@@ -168,7 +168,7 @@ public class AlterPropertiesScript : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
-            PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+            PlayerBehaviour playerMovement = player.GetComponent<PlayerBehaviour>();
             if (playerMovement != null)
             {
                 playerMovement.playerSpeed = newSpeed;
