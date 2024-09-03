@@ -18,7 +18,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void Start()
     {
         if (_playerTransform == null)
-            _playerTransform = FindObjectOfType<PlayerMovement>().transform;
+            _playerTransform = FindObjectOfType<PlayerBehaviour>().transform;
     }
 
     private void Update()
@@ -27,11 +27,13 @@ public class EnemyBehaviour : MonoBehaviour
             ChasePlayer();
     }
 
+    /* Exemplo Usando o ChangeHealthPoints
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement playerScript))
+        if (collision.gameObject.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerScript))
             ChangeHealthPoints(-(int)playerScript.playerStrength);
     }
+    */
     #endregion
 
     #region Funções Próprias

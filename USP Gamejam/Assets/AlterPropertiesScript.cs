@@ -23,7 +23,7 @@ public class AlterPropertiesScript : MonoBehaviour
     private GameObject _enemyProperties;
     private Slider _enemyStrengthSlider;
     private Slider _enemyHealthSlider;
-    //private Toggle _enemyIsChasingButton;
+    private Toggle _enemyIsChasingToggle;
 
     //Obstacle
     private GameObject _obstacleProperties;
@@ -88,7 +88,7 @@ public class AlterPropertiesScript : MonoBehaviour
         #region Propriedades Inimigo
         _enemyStrengthSlider = _enemyProperties?.transform.Find("StrengthSlider")?.GetComponent<Slider>();
         _enemyHealthSlider = _enemyProperties?.transform.Find("HealthSlider")?.GetComponent<Slider>();
-        //_enemyIsChasingButton = _enemyProperties?.transform.Find("IsChasingButton")?.GetComponent<Toggle>();
+        _enemyIsChasingToggle = _enemyProperties?.transform.Find("IsChasingToggle")?.GetComponent<Toggle>();
 
         if (_enemyStrengthSlider == null)
         {
@@ -100,15 +100,15 @@ public class AlterPropertiesScript : MonoBehaviour
             Debug.LogError("Erro: Não foi possível encontrar o Slider 'HealthSlider' dentro de EnemyProperties.");
             return;
         }
-        /*if (_enemyIsChasingButton == null)
+        if (_enemyIsChasingToggle == null)
         {
-            Debug.LogError("Erro: Não foi possível encontrar o Slider 'IsChasingButton' dentro de EnemyProperties.");
+            Debug.LogError("Erro: Não foi possível encontrar o Slider 'IsChasingToggle' dentro de EnemyProperties.");
             return;
-        }*/
+        }
 
         _enemyStrengthSlider.onValueChanged.AddListener(delegate { UpdateEnemyAttributes(); });
         _enemyHealthSlider.onValueChanged.AddListener(delegate { UpdateEnemyAttributes(); });
-        //_enemyIsChasingButton.onValueChanged.AddListener(delegate { UpdatePlayerAttributes(); });
+        _enemyIsChasingToggle.onValueChanged.AddListener(delegate { UpdateEnemyAttributes(); });
         #endregion
 
         //OBSTÁCULO
@@ -167,7 +167,7 @@ public class AlterPropertiesScript : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
-            PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+            PlayerBehaviour playerMovement = player.GetComponent<PlayerBehaviour>();
             if (playerMovement != null)
             {
                 playerMovement.playerSpeed = newSpeed;
@@ -190,7 +190,7 @@ public class AlterPropertiesScript : MonoBehaviour
     {
         float newStrength = _enemyStrengthSlider.value;
         float newHealth = _enemyHealthSlider.value;
-        //float newIsChasing = _enemyIsChasingButton.value;
+        bool newIsChasing = _enemyIsChasingToggle.isOn;
 
         GameObject enemy = GameObject.FindWithTag("Enemy");
         if (enemy != null)
@@ -200,6 +200,7 @@ public class AlterPropertiesScript : MonoBehaviour
             {
                 enemyBehaviour.enemyStrength = newStrength;
                 enemyBehaviour.enemyHealth = newHealth;
+                enemyBehaviour.enemyIsChasing = newIsChasing;
             }
             else
             {
