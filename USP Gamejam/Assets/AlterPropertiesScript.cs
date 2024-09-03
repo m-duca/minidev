@@ -302,6 +302,13 @@ public class AlterPropertiesScript : MonoBehaviour
         {
             o.GetComponent<ObstacleBehaviour>().Reset();
         }
+
+        var groundList = GameObject.FindGameObjectsWithTag("Ground");
+
+        foreach (GameObject g in groundList)
+        {
+            g.GetComponent<GroundBehaviour>().Reset();
+        }
     }
     #endregion
 }

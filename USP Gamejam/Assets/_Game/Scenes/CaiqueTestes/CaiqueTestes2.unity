@@ -873,7 +873,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 155757528}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6569491}
+        m_TargetAssemblyTypeName: AlterPropertiesScript, Assembly-CSharp
+        m_MethodName: ResetAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &155757528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3003,7 +3015,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 818274506}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6569491}
+        m_TargetAssemblyTypeName: AlterPropertiesScript, Assembly-CSharp
+        m_MethodName: ResetAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &818274506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3584,6 +3608,7 @@ GameObject:
   - component: {fileID: 976006031}
   - component: {fileID: 976006036}
   - component: {fileID: 976006035}
+  - component: {fileID: 976006037}
   - component: {fileID: 976006034}
   m_Layer: 5
   m_Name: GroundObject
@@ -3764,6 +3789,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minPosition: {x: -500, y: -500}
   maxPosition: {x: 500, y: 500}
+--- !u!114 &976006037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976006027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f9ec80d85e3ba4a95505f79f37982c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &993132909
 GameObject:
   m_ObjectHideFlags: 0
@@ -4721,7 +4758,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1161868694}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6569491}
+        m_TargetAssemblyTypeName: AlterPropertiesScript, Assembly-CSharp
+        m_MethodName: ResetAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1161868694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8421,7 +8470,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1782727633}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6569491}
+        m_TargetAssemblyTypeName: AlterPropertiesScript, Assembly-CSharp
+        m_MethodName: ResetAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1782727633
 MonoBehaviour:
   m_ObjectHideFlags: 0
