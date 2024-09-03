@@ -13,6 +13,7 @@ public class AlterPropertiesScript : MonoBehaviour
     private List<GameObject> _properties = new List<GameObject>();
 
     //Player
+    [SerializeField] private GameObject player;
     private GameObject _playerProperties;
     private Slider _playerSpeedSlider;
     private Slider _playerStrengthSlider;
@@ -20,14 +21,21 @@ public class AlterPropertiesScript : MonoBehaviour
     private Slider _playerJumpForceSlider;
 
     //Enemy
+    [SerializeField] private GameObject enemy;
     private GameObject _enemyProperties;
+    private Slider _enemySpeedSlider;
     private Slider _enemyStrengthSlider;
     private Slider _enemyHealthSlider;
     private Toggle _enemyIsChasingToggle;
 
     //Obstacle
+    [SerializeField] private GameObject obstacle;
     private GameObject _obstacleProperties;
     private Slider _obstacleStrengthSlider;
+
+    //Ground
+    [SerializeField] private GameObject ground;
+    private GameObject _groundProperties;
     #endregion
 
     #region Funções Unity
@@ -47,6 +55,10 @@ public class AlterPropertiesScript : MonoBehaviour
         _obstacleProperties = GameObject.FindGameObjectWithTag("ObstacleProperties");
         _obstacleProperties.SetActive(false);
         _properties.Add(_obstacleProperties);
+
+        _groundProperties = GameObject.FindGameObjectWithTag("GroundProperties");
+        _groundProperties.SetActive(false);
+        _properties.Add(_groundProperties);
 
         SetAllPropertiesActive(false);
 
@@ -86,10 +98,16 @@ public class AlterPropertiesScript : MonoBehaviour
 
         //INIMIGO
         #region Propriedades Inimigo
+        _enemySpeedSlider = _enemyProperties?.transform.Find("SpeedSlider")?.GetComponent<Slider>();
         _enemyStrengthSlider = _enemyProperties?.transform.Find("StrengthSlider")?.GetComponent<Slider>();
         _enemyHealthSlider = _enemyProperties?.transform.Find("HealthSlider")?.GetComponent<Slider>();
         _enemyIsChasingToggle = _enemyProperties?.transform.Find("IsChasingToggle")?.GetComponent<Toggle>();
 
+        if (_enemySpeedSlider == null)
+        {
+            Debug.LogError("Erro: Não foi possível encontrar o Slider 'SpeedSlider' dentro de EnemyProperties.");
+            return;
+        }
         if (_enemyStrengthSlider == null)
         {
             Debug.LogError("Erro: Não foi possível encontrar o Slider 'StrengthSlider' dentro de EnemyProperties.");
@@ -106,6 +124,7 @@ public class AlterPropertiesScript : MonoBehaviour
             return;
         }
 
+        _enemySpeedSlider.onValueChanged.AddListener(delegate { UpdateEnemyAttributes(); });
         _enemyStrengthSlider.onValueChanged.AddListener(delegate { UpdateEnemyAttributes(); });
         _enemyHealthSlider.onValueChanged.AddListener(delegate { UpdateEnemyAttributes(); });
         _enemyIsChasingToggle.onValueChanged.AddListener(delegate { UpdateEnemyAttributes(); });
@@ -157,6 +176,11 @@ public class AlterPropertiesScript : MonoBehaviour
         OpenProperty(_obstacleProperties);
     }
 
+    public void OpenGroundProperties()
+    {
+        OpenProperty(_groundProperties);
+    }
+
     private void UpdatePlayerAttributes()
     {
         float newSpeed = _playerSpeedSlider.value;
@@ -188,6 +212,7 @@ public class AlterPropertiesScript : MonoBehaviour
 
     private void UpdateEnemyAttributes()
     {
+        float newSpeed = _enemySpeedSlider.value;
         float newStrength = _enemyStrengthSlider.value;
         float newHealth = _enemyHealthSlider.value;
         bool newIsChasing = _enemyIsChasingToggle.isOn;
@@ -198,6 +223,7 @@ public class AlterPropertiesScript : MonoBehaviour
             EnemyBehaviour enemyBehaviour = enemy.GetComponent<EnemyBehaviour>();
             if (enemyBehaviour != null)
             {
+                enemyBehaviour.enemySpeed = newSpeed;
                 enemyBehaviour.enemyStrength = newStrength;
                 enemyBehaviour.enemyHealth = newHealth;
                 enemyBehaviour.enemyIsChasing = newIsChasing;
@@ -233,6 +259,55 @@ public class AlterPropertiesScript : MonoBehaviour
         else
         {
             Debug.LogError("Erro: Objeto Obstacle não encontrado.");
+        }
+    }
+
+    public void DuplicateObject(string objectName)
+    {
+        var spawnOffset = new Vector3(0.5f, 0.5f, 0f);
+
+        switch (objectName) 
+        {
+            case "Obstacle":
+                var newObstacle = Instantiate(obstacle, obstacle.transform.position + spawnOffset, Quaternion.identity);
+                newObstacle.transform.parent = gameObject.transform.parent;
+                break;
+
+            case "Enemy":
+                var newEnemy = Instantiate(enemy, enemy.transform.position + spawnOffset, Quaternion.identity);
+                newEnemy.transform.parent = gameObject.transform.parent;
+                break;
+
+            case "Ground":
+                var newGround = Instantiate(ground, ground.transform.position + spawnOffset, Quaternion.identity);
+                newGround.transform.parent = gameObject.transform.parent;
+                break;
+        }
+    }
+
+    public void ResetAll() 
+    {
+        GameObject.FindObjectOfType<PlayerBehaviour>().Reset();
+
+        var enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach(GameObject e in enemyList) 
+        {
+            e.GetComponent<EnemyBehaviour>().Reset();
+        }
+
+        var obstacleList = GameObject.FindGameObjectsWithTag("Obstacle");
+
+        foreach(GameObject o in obstacleList) 
+        {
+            o.GetComponent<ObstacleBehaviour>().Reset();
+        }
+
+        var groundList = GameObject.FindGameObjectsWithTag("Ground");
+
+        foreach (GameObject g in groundList)
+        {
+            g.GetComponent<GroundBehaviour>().Reset();
         }
     }
     #endregion

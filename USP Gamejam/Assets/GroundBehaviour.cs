@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleBehaviour : MonoBehaviour
+public class GroundBehaviour : MonoBehaviour
 {
-    public float obstacleStrength;
-
     private Vector3 _initialPos;
 
     private bool _isFirst = false;
-    private float _initialStrength;
-
 
     private void Awake()
     {
@@ -19,21 +15,19 @@ public class ObstacleBehaviour : MonoBehaviour
 
     private void Start()
     {
-        if (_isFirst) 
+        if (_isFirst)
         {
             _initialPos = gameObject.transform.position;
-            _initialStrength = obstacleStrength;
-        }        
+        }
     }
 
     public void Reset()
     {
-        if (_isFirst) 
+        if (_isFirst)
         {
             gameObject.transform.position = _initialPos;
-            obstacleStrength = _initialStrength;
         }
-        else 
+        else
         {
             Destroy(gameObject);
         }
