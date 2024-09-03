@@ -34,6 +34,7 @@ public class AlterPropertiesScript : MonoBehaviour
     private Slider _obstacleStrengthSlider;
 
     //Ground
+    [SerializeField] private GameObject ground;
     private GameObject _groundProperties;
     #endregion
 
@@ -273,6 +274,10 @@ public class AlterPropertiesScript : MonoBehaviour
 
             case "Enemy":
                 Instantiate(enemy, enemy.transform.position + spawnOffset, Quaternion.identity);
+                break;
+
+            case "Ground":
+                Instantiate(ground, ground.transform.position + spawnOffset, Quaternion.identity);
                 break;
         }
     }

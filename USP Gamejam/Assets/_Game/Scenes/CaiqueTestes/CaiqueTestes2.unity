@@ -219,6 +219,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a80d353eb9cb046b4b9efa04692b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1756189485}
+  enemy: {fileID: 811503028}
+  obstacle: {fileID: 1676680650}
+  ground: {fileID: 976006027}
 --- !u!1 &43039922
 GameObject:
   m_ObjectHideFlags: 0
@@ -3937,7 +3941,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 1, g: 0.4764151, b: 0.4764151, a: 1}
     m_PressedColor: {r: 0.509434, g: 0, b: 0, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3960,13 +3964,13 @@ MonoBehaviour:
       - m_Target: {fileID: 6569491}
         m_TargetAssemblyTypeName: AlterPropertiesScript, Assembly-CSharp
         m_MethodName: DuplicateObject
-        m_Mode: 2
+        m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 1676680650}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Obstacle
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1011733652
@@ -4070,7 +4074,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 1, g: 0.4764151, b: 0.4764151, a: 1}
     m_PressedColor: {r: 0.509434, g: 0, b: 0, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -4093,13 +4097,13 @@ MonoBehaviour:
       - m_Target: {fileID: 6569491}
         m_TargetAssemblyTypeName: AlterPropertiesScript, Assembly-CSharp
         m_MethodName: DuplicateObject
-        m_Mode: 2
+        m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 976006027}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Ground
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1017489237
@@ -9401,7 +9405,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 1, g: 0.4764151, b: 0.4764151, a: 1}
     m_PressedColor: {r: 0.509434, g: 0, b: 0, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -9424,13 +9428,13 @@ MonoBehaviour:
       - m_Target: {fileID: 6569491}
         m_TargetAssemblyTypeName: AlterPropertiesScript, Assembly-CSharp
         m_MethodName: DuplicateObject
-        m_Mode: 2
+        m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 811503028}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Enemy
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1946711711
