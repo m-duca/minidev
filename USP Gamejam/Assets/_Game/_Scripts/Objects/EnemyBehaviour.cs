@@ -63,12 +63,12 @@ public class EnemyBehaviour : MonoBehaviour
     #endregion
 
     #region Funções Próprias
-    private void ChangeHealthPoints(float points = 0)
+    public void ChangeHealthPoints(float points = 0)
     {
         enemyHealth = Mathf.Clamp(enemyHealth + points, 0, enemyHealth);
 
         if (enemyHealth == 0)
-            Destroy(gameObject);
+            Reset();
     }
 
     private void ChasePlayer() 

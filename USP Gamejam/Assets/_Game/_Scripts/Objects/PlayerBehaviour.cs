@@ -13,6 +13,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     //Componente
     private Rigidbody2D _rb;
+    private bool _isJumping;
 
     /*
     Player
@@ -28,7 +29,6 @@ public class PlayerBehaviour : MonoBehaviour
     private float _initialHealth;
     private float _initialSpeed;
     private float _initialJumpForce;
-
 
     private void Start()
     {
@@ -50,13 +50,13 @@ public class PlayerBehaviour : MonoBehaviour
         {
             //_rb.velocity = new Vector2(_rb.velocity.x, 0f);
             //Faz o pulo
+            _isJumping = true;
             _rb.AddForce(Vector3.up * playerJumpForce, ForceMode2D.Impulse);
             //_rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
 
             //Desativa o pulo depois que sai do chão
             isGrounded = false;
         }
-       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -64,10 +64,20 @@ public class PlayerBehaviour : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+
+            if (_isJumping)
+                _isJumping = false;
         }
         else if (collision.gameObject.CompareTag("Enemy")) 
         {
-            ChangeHealthPoints(-collision.gameObject.GetComponent<EnemyBehaviour>().enemyStrength);
+            if (_isJumping && gameObject.transform.position.y > collision.gameObject.transform.position.y) 
+            {
+                collision.gameObject.GetComponent<EnemyBehaviour>().ChangeHealthPoints(-playerStrength);
+            }
+            else 
+            {
+                ChangeHealthPoints(-collision.gameObject.GetComponent<EnemyBehaviour>().enemyStrength);
+            }
         }
         else if (collision.gameObject.CompareTag("Obstacle")) 
         {
@@ -80,7 +90,7 @@ public class PlayerBehaviour : MonoBehaviour
         playerHealth = Mathf.Clamp(playerHealth + points, 0, playerHealth);
 
         if (playerHealth == 0)
-            Destroy(gameObject);
+            Reset();
     }
 
     public void Reset()
