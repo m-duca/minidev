@@ -13,6 +13,7 @@ public class AlterPropertiesScript : MonoBehaviour
     private List<GameObject> _properties = new List<GameObject>();
 
     //Player
+    [SerializeField] private GameObject player;
     private GameObject _playerProperties;
     private Slider _playerSpeedSlider;
     private Slider _playerStrengthSlider;
@@ -20,6 +21,7 @@ public class AlterPropertiesScript : MonoBehaviour
     private Slider _playerJumpForceSlider;
 
     //Enemy
+    [SerializeField] private GameObject enemy;
     private GameObject _enemyProperties;
     private Slider _enemySpeedSlider;
     private Slider _enemyStrengthSlider;
@@ -27,6 +29,7 @@ public class AlterPropertiesScript : MonoBehaviour
     private Toggle _enemyIsChasingToggle;
 
     //Obstacle
+    [SerializeField] private GameObject obstacle;
     private GameObject _obstacleProperties;
     private Slider _obstacleStrengthSlider;
 
@@ -258,9 +261,20 @@ public class AlterPropertiesScript : MonoBehaviour
         }
     }
 
-    public void DuplicateObject(GameObject objectToDuplicate)
+    public void DuplicateObject(string objectName)
     {
-        Instantiate(objectToDuplicate);
+        var spawnOffset = new Vector3(0.5f, 0.5f, 0f);
+
+        switch (objectName) 
+        {
+            case "Obstacle":
+                Instantiate(obstacle, obstacle.transform.position + spawnOffset, Quaternion.identity);
+                break;
+
+            case "Enemy":
+                Instantiate(enemy, enemy.transform.position + spawnOffset, Quaternion.identity);
+                break;
+        }
     }
     #endregion
 }
