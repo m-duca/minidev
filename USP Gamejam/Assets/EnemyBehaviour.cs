@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     #region Variáveis
-    public int enemySpeed;
+    public float enemySpeed;
     public float enemyStrength;
     public float enemyHealth;
     public bool enemyIsChasing = false;
